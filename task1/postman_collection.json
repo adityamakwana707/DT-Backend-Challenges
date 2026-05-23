@@ -1,0 +1,113 @@
+{
+  "info": {
+    "name": "Task1 — Events API",
+    "_postman_id": "task1-events-api",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    { "key": "base", "value": "http://localhost:3000/api/v3/app" },
+    { "key": "event_id", "value": "PASTE_INSERTED_ID_HERE" }
+  ],
+  "item": [
+    {
+      "name": "1. Health Check",
+      "request": {
+        "method": "GET",
+        "url": "http://localhost:3000/",
+        "description": "Verify the server is running"
+      }
+    },
+    {
+      "name": "2. Create Event",
+      "request": {
+        "method": "POST",
+        "url": "{{base}}/events",
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            { "key": "name",         "value": "My Tech Summit",       "type": "text" },
+            { "key": "tagline",      "value": "Building the Future",   "type": "text" },
+            { "key": "schedule",     "value": "2025-09-15T10:00:00Z",  "type": "text" },
+            { "key": "description",  "value": "A premier tech conference focused on AI and innovation.", "type": "text" },
+            { "key": "moderator",    "value": "Jane Doe",              "type": "text" },
+            { "key": "category",     "value": "Technology",            "type": "text" },
+            { "key": "sub_category", "value": "AI & ML",               "type": "text" },
+            { "key": "rigor_rank",   "value": "4",                     "type": "text" },
+            { "key": "uid",          "value": "user_001",              "type": "text" },
+            { "key": "files[image]", "type": "file", "src": "" }
+          ]
+        },
+        "description": "Create a new event. Copy insertedId into the 'event_id' collection variable."
+      }
+    },
+    {
+      "name": "3. Get Event by ID",
+      "request": {
+        "method": "GET",
+        "url": "{{base}}/events?id={{event_id}}",
+        "description": "Fetch a single event by MongoDB _id"
+      }
+    },
+    {
+      "name": "4. Get Latest Events (Paginated)",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "{{base}}/events?type=latest&limit=5&page=1",
+          "query": [
+            { "key": "type",  "value": "latest" },
+            { "key": "limit", "value": "5" },
+            { "key": "page",  "value": "1" }
+          ]
+        },
+        "description": "Returns paginated list sorted by schedule DESC"
+      }
+    },
+    {
+      "name": "5. Update Event",
+      "request": {
+        "method": "PUT",
+        "url": "{{base}}/events/{{event_id}}",
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            { "key": "name",       "value": "Updated Summit Name",  "type": "text" },
+            { "key": "tagline",    "value": "Innovation Redefined", "type": "text" },
+            { "key": "rigor_rank", "value": "5",                    "type": "text" }
+          ]
+        },
+        "description": "All fields optional. Only provided fields are updated."
+      }
+    },
+    {
+      "name": "6. Delete Event",
+      "request": {
+        "method": "DELETE",
+        "url": "{{base}}/events/{{event_id}}",
+        "description": "Permanently delete event by _id"
+      }
+    },
+    {
+      "name": "7. Error — Invalid ObjectId",
+      "request": {
+        "method": "GET",
+        "url": "{{base}}/events?id=not-a-valid-id",
+        "description": "Should return 400 Bad Request"
+      }
+    },
+    {
+      "name": "8. Error — Missing required fields (POST)",
+      "request": {
+        "method": "POST",
+        "url": "{{base}}/events",
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            { "key": "name", "value": "Only name provided", "type": "text" }
+          ]
+        },
+        "description": "Should return 422 with list of missing fields"
+      }
+    }
+  ]
+}

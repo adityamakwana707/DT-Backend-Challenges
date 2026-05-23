@@ -1,4 +1,4 @@
-# My Internship Tasks
+# DT-Backend-Challenges
 
 Hey! This repo has the code and docs for my two internship tasks. 
 
@@ -54,13 +54,23 @@ Then just start the server:
 
 I tested all 5 endpoints in Postman to make sure they work right. Screenshots below!
 
-![Health Check](./public/health.png)
-![Create New Event](./public/createnewevent.png)
-![Get By ID](./public/getbyid.png)
-![Update Event](./public/updateevent.png)
-![Delete Event](./public/deleteevent.png)
-![Error - Invalid Object ID](./public/error_invalidobjectid.png)
-![Error - Missing Required Fields](./public/error_missingrequired%20fields.png)
+<table>
+  <tr>
+    <td align="center"><b>Health Check</b><br><img src="./public/health.png" width="400"/></td>
+    <td align="center"><b>Create New Event</b><br><img src="./public/createnewevent.png" width="400"/></td>
+  </tr>
+  <tr>
+    <td align="center"><b>Get By ID</b><br><img src="./public/getbyid.png" width="400"/></td>
+    <td align="center"><b>Update Event</b><br><img src="./public/updateevent.png" width="400"/></td>
+  </tr>
+  <tr>
+    <td align="center"><b>Delete Event</b><br><img src="./public/deleteevent.png" width="400"/></td>
+    <td align="center"><b>Invalid Object ID</b><br><img src="./public/error_invalidobjectid.png" width="400"/></td>
+  </tr>
+  <tr>
+    <td align="center" colspan="2"><b>Missing Required Fields</b><br><img src="./public/error_missingrequired%20fields.png" width="400"/></td>
+  </tr>
+</table>
 
 ## Task 2: Nudge API Docs
 
@@ -69,7 +79,5 @@ For this task I had to look at a wireframe image and figure out how the API shou
 > 📄 You can see all my api documentation over here: [task2/README.md](./task2/README.md)
 
 ---
-*Note: This was my first time using MongoDB without Mongoose. It took a bit to get used to doing things manually, but it makes a lot of sense once you understand how ObjectId works!*
 
-Your Name | Internship Assignment
-# DT-Backend-Challenges
+Aditya Makwana | Internship Assignment
